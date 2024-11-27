@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+{% block content %}
+<style>
+div{
+    margin-top: 20px;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+</style>
+<div class="shadow p-3 mb-5 bg-white rounded">
+    <h1 class="mt-4">Индивидуальный предприниматель: {{ get_individEnter.firstName }}</h1>
+    <p><a href="/">Вернуться на главную</a></p>
+    <p>Фамилия: {{get_individEnter.firstName}}</p>
+    <p>Имя: {{get_individEnter.name}}</p>
+    <p>Отчество: {{get_individEnter.lastName}}</p>
+    <p>Дата рождения: {{get_individEnter.dateOfBirth|date:"d.m.Y"}}</p>
+    <p>Место жительства: {{get_individEnter.location}}</p>
+    <p>Вид документа: {{get_individEnter.docType}}</p>
+    <p>Идентификационный номер паспорта: {{get_individEnter.passportIdNumber}}</p>
+    <p>Серия паспорта: {{get_individEnter.passportSeries}}</p>
+    <p>Кем выдан: {{get_individEnter.issuedBy}}</p>
+    <p>Дата выдачи: {{get_individEnter.dateIssuedBy|date:"d.m.Y"}}</p>
+    <p>Адрес электронной почты: {{get_individEnter.email}}</p>
+    <p>Номер телефона: {{get_individEnter.numberPhone}}</p>
+    <p>Номер государственной регистрации: {{get_individEnter.numberStateRegist}}</p>
+    <p>Наименование организации, осуществившей государственную регистрацию: {{get_individEnter.nameOfCompanyRegist}}</p>
+    <p>Дата регистрации: {{get_individEnter.dateRegist|date:"d.m.Y"}}</p>
+    <p>Номер решения: {{get_individEnter.decisionNumber}}</p>
+</div>
+{% endblock %}

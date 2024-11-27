@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+{% block content %}
+<style>
+    div {
+        margin-top: 20px;
+        margin-left: 200px;
+        margin-right: 200px;
+    }
+</style>
+<div class="shadow p-3 mb-5 bg-white rounded">
+    <h1 class="mt-4">Физическое лицо: {{ get_individual.firstName }}</h1>
+    <p><a href="/">Вернуться на главную</a></p>
+    <p>Фамилия: {{get_individual.firstName}}</p>
+    <p>Имя: {{get_individual.name}}</p>
+    <p>Отчество: {{get_individual.lastName}}</p>
+    <p>Дата рождения: {{get_individual.dateOfBirth|date:"d.m.Y"}}</p>
+    <p>Место жительства: {{get_individual.location}}</p>
+    <p>Вид документа: {{get_individual.docType}}</p>
+    <p>Идентификационный номер паспорта: {{get_individual.passportIdNumber}}</p>
+    <p>Серия паспорта: {{get_individual.passportSeries}}</p>
+    <p>Кем выдан: {{get_individual.issuedBy}}</p>
+    <p>Дата выдачи: {{get_individual.dateIssuedBy|date:"d.m.Y"}}</p>
+    <p>Адрес электронной почты: {{get_individual.email}}</p>
+    <p>Номер телефона: {{get_individual.numberPhone}}</p>
+</div>
+{% endblock %}

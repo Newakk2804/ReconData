@@ -1,0 +1,97 @@
+{% extends "index.html" %}
+{% block content %}
+<ul class="nav nav-pills mt-2 mb-2">
+    <li class="nav-item">
+        {% url "edit_individual_page" as url_edit_individual_page %}
+        <a class="nav-link {% if url_edit_individual_page == request.path %}active{% endif %}" href="{{url_edit_individual_page}}">Физические лица</a>
+    </li>
+    <li class="nav-item">
+        {% url "edit_individEnter_page" as url_edit_individEnter_page %}
+        <a class="nav-link {% if url_edit_individEnter_page == request.path %}active{% endif %}" href="{{url_edit_individEnter_page}}">Индивидуальные предприниматели</a>
+    </li>
+    <li class="nav-item">
+        {% url "edit_legalPerson_page" as url_edit_legalPerson_page %}
+        <a class="nav-link {% if url_edit_legalPerson_page == request.path %}active{% endif %}" href="{{url_edit_legalPerson_page}}">Юридические лица</a>
+    </li>
+</ul>
+{% if update %}
+<h1 class="mt-4">Страница редактирования</h1>
+<p><a href="{% url 'edit_page' %}">Вернуться на страницу редактирования</a></p>
+<form id="update_data" method="post">
+    {% csrf_token %}
+    {{form}}
+</form>
+<button form="update_data" type="submit" class="btn btn-primary">Обновить</button>
+{% else %}
+<h1 class="mt-4">Панель администратора</h1>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Добавить новую запись
+</button>
+<table class="table table-bordered mt-4">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Наименование организации</th>
+            <th scope="col">Адрес организации</th>
+            <th scope="col">Номер гос. регистрации</th>
+            <th scope="col">Наименование организиции, осуществившей государственную регистрацию</th>
+            <th scope="col">Дата регистрации</th>
+            <th scope="col">Номер решения</th>
+            <th scope="col">учетный номер плательщика</th>
+            <th scope="col">Адрес почты</th>
+            <th scope="col">Телефон</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Отчество</th>
+            <th scope="col">Редактирование</th>
+            <th scope="col">Удаление</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in list_legalPerson %}
+        <tr>
+            <th>{{i.id}}</th>
+            <td>{{i.nameOfCompany}}</td>
+            <td>{{i.locationOfTheCompany}}</td>
+            <td>{{i.numberStateRegist}}</td>
+            <td>{{i.nameOfCompanyRegist}}</td>
+            <td>{{i.dateRegist}}</td>
+            <td>{{i.decisionNumber}}</td>
+            <td>{{i.payerAccNumber}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.numberPhone}}</td>
+            <td>{{i.firstNameMan}}</td>
+            <td>{{i.nameMan}}</td>
+            <td>{{i.lastNameMan}}</td>
+            <td><a href="{% url 'update_legalPerson_page' i.id %}">Редактировать</a></td>
+            <td><a href="{% url 'delete_legalPerson_page' i.id %}">Удалить</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Добавление ЮЛ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="add_form" method="post">
+                    {% csrf_token %}
+                    {{form}}
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                <button form="add_form" type="submit" class="btn btn-primary">Добавить</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

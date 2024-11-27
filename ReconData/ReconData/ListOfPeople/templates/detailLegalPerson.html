@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+{% block content %}
+<style>
+    div {
+        margin-top: 20px;
+        margin-left: 200px;
+        margin-right: 200px;
+    }
+</style>
+<div class="shadow p-3 mb-5 bg-white rounded">
+    <h1 class="mt-4">Юридическое лицо: {{ get_legalPerson.nameOfCompany }}</h1>
+    <p><a href="/">Вернуться на главную</a></p>
+    <p>Наименование компании: {{get_legalPerson.nameOfCompany}}</p>
+    <p>Адрес организации: {{get_legalPerson.locationOfTheCompany}}</p>
+    <p>Номер государственной регистрации: {{get_legalPerson.numberStateRegist}}</p>
+    <p>Наименование организации, осуществившей государственную регистрацию: {{get_legalPerson.nameOfCompanyRegist}}</p>
+    <p>Дата регистрации: {{get_legalPerson.dateRegist|date:"d.m.Y"}}</p>
+    <p>Номер решения: {{get_legalPerson.decisionNumber}}</p>
+    <p>Учетный номер плательщика: {{get_legalPerson.payerAccNumber}}</p>
+    <p>Адрес электронной почты: {{get_legalPerson.email}}</p>
+    <p>Контактный телефон: {{get_legalPerson.numberPhone}}</p>
+    <p>Фамилия руководителя: {{get_legalPerson.firstNameMan}}</p>
+    <p>Имя руководителя: {{get_legalPerson.nameMan}}</p>
+    <p>Отчество руководителя: {{get_legalPerson.lastNameMan}}</p>
+</div>
+{% endblock %}

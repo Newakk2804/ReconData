@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+{% block content %}
+<ul class="nav nav-pills mt-2 mb-2">
+    <li class="nav-item">
+        {% url "edit_individual_page" as url_edit_individual_page %}
+        <a class="nav-link {% if url_edit_individual_page == request.path %}active{% endif %}" href="{{url_edit_individual_page}}">Физические лица</a>
+    </li>
+    <li class="nav-item">
+        {% url "edit_individEnter_page" as url_edit_individEnter_page %}
+        <a class="nav-link {% if url_edit_individEnter_page == request.path %}active{% endif %}" href="{{url_edit_individEnter_page}}">Индивидуальные предприниматели</a>
+    </li>
+    <li class="nav-item">
+        {% url "edit_legalPerson_page" as url_edit_legalPerson_page %}
+        <a class="nav-link {% if url_edit_legalPerson_page == request.path %}active{% endif %}" href="{{url_edit_legalPerson_page}}">Юридические лица</a>
+    </li>
+</ul>
+{% if update %}
+<h1 class="mt-4">Страница редактирования</h1>
+<p><a href="{% url 'edit_page' %}">Вернуться на страницу редактирования</a></p>
+<form id="update_data" method="post">
+    {% csrf_token %}
+    {{form}}
+</form>
+<button form="update_data" type="submit" class="btn btn-primary">Обновить</button>
+{% else %}
+<h1 class="mt-4">Панель администратора</h1>
+{% endif %}
+{% endblock %}

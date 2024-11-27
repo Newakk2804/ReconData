@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+{% block content %}
+<ul class="nav nav-pills mt-2 mb-2">
+    <li class="nav-item">
+        {% url "individual_page" as url_individual_page %}
+        <a class="nav-link {% if url_individual_page == request.path %}active{% endif %}" href="{{url_individual_page}}">Физические лица</a>
+    </li>
+    <li class="nav-item">
+        {% url "individEnter_page" as url_individEnter_page %}
+        <a class="nav-link {% if url_individEnter_page == request.path %}active{% endif %}" href="{{url_individEnter_page}}">Индивидуальные предприниматели</a>
+    </li>
+    <li class="nav-item">
+        {% url "legalPerson_page" as url_legalPerson_page %}
+        <a class="nav-link {% if url_legalPerson_page == request.path %}active{% endif %}" href="{{url_legalPerson_page}}">Юридические лица</a>
+    </li>
+</ul>
+{% for i in list_individEnter %}
+<ul class="list-group.mt-t">
+    <li class="list-group-item">
+        <b>{{ i.numberStateRegist }}</b>
+        <span>{{i.firstName}}</span>
+        <span>{{ i.name }}</span>
+        <span>{{ i.lastName }}</span>
+        <span>{{ i.dateOfBirth }}</span>
+        <span class="float-right mr-3"><a href="/detailIndividEnter/{{i.id}}">Подробнее</a></span>
+    </li>
+</ul>
+{% endfor %}
+{% endblock %}
